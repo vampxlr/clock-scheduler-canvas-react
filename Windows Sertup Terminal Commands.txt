@@ -1,0 +1,19 @@
+Commands to setup app
+__________________________________
+npm install --save
+npm install -g webpack
+npm install -g nodemon
+webpack --config webpack.config.js
+nodemon server/server.js
+npm run serve
+npm run build
+_________________________________
+
+for building chrome extension 
+"npm run build"
+for testing chrome extension once
+"npm run test"
+for testing chrome extension auto reload on file changes
+"npm run test:watch"
+_________________________________
+note: Unpacked version of chrome app is in folder "client"
