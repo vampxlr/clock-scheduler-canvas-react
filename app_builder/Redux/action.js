@@ -56,10 +56,23 @@ let actions = {
 
     },
 
+    selection_local_updateAllSelectedPies: function selection_local_updateAllSelectedPies(startingAngle=0,angleValue=30,color="black",className="pie",amOrPm ="AM"){
+        return{
+            type:"SELECTION_LOCAL_UPDATE_ALL_SELECTED_PIES",
+            startingAngle:startingAngle,
+            angleValue:angleValue,
+            color:color,
+            className:className,
+            amOrPm:amOrPm
+        }
+
+    },
+
     selection_local_updateSelectedPiesAngleByAngle: function selection_local_updateSelectedPiesAngleByAngle(angle){
         return{
             type:"SELECTION_LOCAL_UPDATE_SELECTED_PIES_ANGLE_BY_ANGLE",
-            angle:angle
+            angle:angle,
+
         }
 
     },

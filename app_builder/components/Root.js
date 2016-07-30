@@ -4,6 +4,56 @@ import {bindActionCreators} from 'redux'
 import actions from '../redux/action'
 import {radiansToDegrees,pixelToDegree,degreesToRadians} from '../utils/pieGeometry'
 
+var top
+var left
+
+function ilog(msg) {
+    var p = document.getElementById('log');
+    p.innerHTML = msg + "\n" + p.innerHTML;
+}
+JSON.stringifyOnce = function(obj, replacer, indent){
+    var printedObjects = [];
+    var printedObjectKeys = [];
+
+    function printOnceReplacer(key, value){
+        if ( printedObjects.length > 2000){ // browsers will not print more than 20K, I don't see the point to allow 2K.. algorithm will not be fast anyway if we have too many objects
+            return 'object too long';
+        }
+        var printedObjIndex = false;
+        printedObjects.forEach(function(obj, index){
+            if(obj===value){
+                printedObjIndex = index;
+            }
+        });
+
+        if ( key == ''){ //root element
+            printedObjects.push(obj);
+            printedObjectKeys.push("root");
+            return value;
+        }
+
+        else if(printedObjIndex+"" != "false" && typeof(value)=="object"){
+            if ( printedObjectKeys[printedObjIndex] == "root"){
+                return "(pointer to root)";
+            }else{
+                return "(see " + ((!!value && !!value.constructor) ? value.constructor.name.toLowerCase()  : typeof(value)) + " with key " + printedObjectKeys[printedObjIndex] + ")";
+            }
+        }else{
+
+            var qualifiedKey = key || "(empty key)";
+            printedObjects.push(value);
+            printedObjectKeys.push(qualifiedKey);
+            if(replacer){
+                return replacer(key, value);
+            }else{
+                return value;
+            }
+        }
+    }
+    return JSON.stringify(obj, printOnceReplacer, indent);
+};
+
+
 
 function log(data){
    // console.log(data)
@@ -32,6 +82,7 @@ function randomColor(){
 
 
 class Root extends Component {
+
 
 
     subtractArrayById(pieStateAll,pieStateSelected){
@@ -126,6 +177,7 @@ class Root extends Component {
     constructor(props, context) {
         super(props, context);
         this.counter=0;
+        this.touchCounter=0
         this.state = {
             circle:[],
             styleSheetRef:[]
@@ -199,7 +251,8 @@ class Root extends Component {
         if(selectedPieState){
             for(var key in selectedPieState)
             {
-                this.drawSegmentWithAngleColorValue(canvas, context,selectedPieState[key].startingAngle,selectedPieState[key].angleValue,selectedPieState[key].color)
+                //this.drawSegmentWithAngleColorValue(canvas, context,selectedPieState[key].startingAngle,selectedPieState[key].angleValue,selectedPieState[key].color)
+                this.drawSegmentWithAngleColorValue(canvas, context,selectedPieState[key].startingAngle,selectedPieState[key].angleValue,"grey")
             }
         }
     }
@@ -215,6 +268,13 @@ class Root extends Component {
 
     componentDidMount(){
 
+        var element = document.getElementById('myCan');
+
+        top = element.getBoundingClientRect().top + window.pageYOffset - element.ownerDocument.documentElement.clientTop
+        left = element.getBoundingClientRect().left + window.pageXOffset - element.ownerDocument.documentElement.clientLeft
+
+
+//        console.log(element.getBoundingClientRect())
         //this.initializeCircle()
         setTimeout(()=>{
 
@@ -236,9 +296,11 @@ class Root extends Component {
 
     }
     handleClick(e){
+        //alert( JSON.stringifyOnce(e))
         var x = e.nativeEvent.offsetX;
         var y = e.nativeEvent.offsetY;
-
+        console.log("x: "+x)
+        console.log("y: "+y)
         this.addPieToReduxStateWithAngle(Math.round(pixelToDegree(x,y)),30)
         setTimeout(()=>{
 
@@ -269,21 +331,23 @@ class Root extends Component {
     }
 
     handleDrag(e){
+
         this.counter++
         var x = e.nativeEvent.offsetX;
         var y = e.nativeEvent.offsetY;
 
-
+        //console.log(e.nativeEvent)
+        var startingCoordinateY;
         //console.log(this.counter)
         if(this.counter==1)
         {
-
+            console.log(e.nativeEvent)
             this.props.actions.selection_local_selectPieObjectByAngle(Math.round(pixelToDegree(x,y)))
-            log("x: "+x)
-            log("y: "+y)
+            console.log("x: "+x)
+            console.log("y: "+y)
             log("counter: "+this.counter)
             log(e.nativeEvent)
-
+            startingCoordinateY = y;
         }
         if(this.counter>1 )
         {
@@ -300,6 +364,18 @@ class Root extends Component {
             log("y: "+y)
             log("counter: "+this.counter)
             log(e.nativeEvent)
+
+        }
+
+        if(this.counter>1 && e.nativeEvent.ctrlKey ){
+
+                this.props.actions.selection_local_updateAllSelectedPies(pixelToDegree(x,y),30+this.counter)
+
+
+
+
+        } if (this.counter>1 && e.nativeEvent.shiftKey){
+            this.props.actions.selection_local_updateAllSelectedPies(pixelToDegree(x,y),30-this.counter)
 
         }
 
@@ -342,16 +418,73 @@ class Root extends Component {
         this.drawSegment(canvas, ctx, 0);
         this.drawSegmentWithLocation(canvas,ctx,pixelToDegree(x,y)-15)
     }
+    handleTouchStart(e){
+        this.touchCounter=this.touchCounter+1;
+        //console.log(element.getBoundingClientRect())
+        console.log(e.nativeEvent)
+        ilog("touch Start")
+        ilog(this.touchCounter)
+        e.preventDefault()
+/*
+      console.log("top: "+ top +"left: "+ left)
+        e.preventDefault()
+        console.log(e.nativeEvent)
+        console.log(parseInt(e.nativeEvent.changedTouches[0].pageX-left-1))
+        console.log(parseInt(e.nativeEvent.changedTouches[0].pageY-top-1))
+        alert(e.nativeEvent.changedTouches.length)
+        if(e.nativeEvent.changedTouches.length==2){
+            var touch1 = {x:parseInt(e.nativeEvent.changedTouches[0].pageX-left-1),y:parseInt(e.nativeEvent.changedTouches[0].pageY-top-1)}
+            var touch2 = {x:parseInt(e.nativeEvent.changedTouches[1].pageX-left-1),y:parseInt(e.nativeEvent.changedTouches[1].pageY-top-1)}
+
+            alert(touch1.x)
+            alert(touch1.y)
+            alert(touch2.x)
+            alert(touch2.y)
+        }*/
+    }
+
+    handleTouchMove(e){
+        console.log("top: "+ top +"left: "+ left)
+        e.preventDefault()
+        //console.log(e.nativeEvent)
+        //ilog(parseInt(e.nativeEvent.changedTouches[0].pageX-left-1))
+        //ilog(parseInt(e.nativeEvent.changedTouches[0].pageY-top-1))
+        //ilog(e.nativeEvent.changedTouches.length)
+        if(e.nativeEvent.changedTouches.length==2){
+            var touch1 = {x:parseInt(e.nativeEvent.changedTouches[0].pageX-left-1),y:
+                parseInt(e.nativeEvent.changedTouches[0].pageY-top-1)}
+            var touch2 = {x:parseInt(e.nativeEvent.changedTouches[1].pageX-left-1),y:parseInt(e.nativeEvent.changedTouches[1].pageY-top-1)}
+      // ilog(e.nativeEvent.changedTouches.length)
+          /*  alert(touch1.x)
+            alert(touch1.y)
+            alert(touch2.x)
+            alert(touch2.y)*/
+        }
+    }
+
+    handleTouchEnd(e){
+        this.touchCounter=this.touchCounter=0;
+        ilog("Touch End")
+        ilog(this.touchCounter)
+        console.log(e.nativeEvent)
+    }
+
+    handleTouchCancle(){
+        this.touchCounter=0;
+        ilog("Touch End")
+
+    }
     render(){
         return(
             <div id="Root" >
 
 
-                <canvas draggable="true" id="myCan" height="500" width="500" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
+                <canvas onTouchCancle={this.handleTouchCancle.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="500" width="500" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
 
                 </canvas>
 
                 <button id="delete_all_btn" onClick={this.handleDeleteAll.bind(this)}>Delete All</button>
+                <footer ><pre id="log"></pre></footer>
             </div>
         )
     }

@@ -42,6 +42,20 @@ export default function selectionReducer(selectionState=[],action){
 
             return new_pieState
 
+        case'SELECTION_LOCAL_UPDATE_ALL_SELECTED_PIES':
+                    new_pieState= new_selectionState
+
+
+             new_pieState = new_pieState.map(function(obj){
+                obj.startingAngle = action.startingAngle;
+                obj.angleValue = action.angleValue;
+                obj.color = action.color;
+                obj.className = action.className;
+                return obj;
+            });
+
+                    return new_pieState
+
 
 
         default:
