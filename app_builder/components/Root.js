@@ -177,7 +177,10 @@ class Root extends Component {
     constructor(props, context) {
         super(props, context);
         this.counter=0;
-        this.touchCounter=0
+        this.touchCounter=0;
+        this.touchStart={x:0,y:0,angle:0,identifier:0};
+        this.touchSecond={x:0,y:0,angle:0,identifier:0};
+
         this.state = {
             circle:[],
             styleSheetRef:[]
@@ -301,7 +304,7 @@ class Root extends Component {
         var y = e.nativeEvent.offsetY;
         console.log("x: "+x)
         console.log("y: "+y)
-        this.addPieToReduxStateWithAngle(Math.round(pixelToDegree(x,y)),30)
+       this.addPieToReduxStateWithAngle(Math.round(pixelToDegree(x,y)),30)
         setTimeout(()=>{
 
             this.drawPiesWithPieState(this.props.pieState)
@@ -347,7 +350,7 @@ class Root extends Component {
             console.log("y: "+y)
             log("counter: "+this.counter)
             log(e.nativeEvent)
-            startingCoordinateY = y;
+
         }
         if(this.counter>1 )
         {
@@ -367,17 +370,7 @@ class Root extends Component {
 
         }
 
-        if(this.counter>1 && e.nativeEvent.ctrlKey ){
 
-                this.props.actions.selection_local_updateAllSelectedPies(pixelToDegree(x,y),30+this.counter)
-
-
-
-
-        } if (this.counter>1 && e.nativeEvent.shiftKey){
-            this.props.actions.selection_local_updateAllSelectedPies(pixelToDegree(x,y),30-this.counter)
-
-        }
 
     }
 
@@ -421,45 +414,100 @@ class Root extends Component {
     handleTouchStart(e){
         this.touchCounter=this.touchCounter+1;
         //console.log(element.getBoundingClientRect())
+        //console.log(e.nativeEvent)
         console.log(e.nativeEvent)
         ilog("touch Start")
         ilog(this.touchCounter)
-        e.preventDefault()
-/*
-      console.log("top: "+ top +"left: "+ left)
-        e.preventDefault()
-        console.log(e.nativeEvent)
-        console.log(parseInt(e.nativeEvent.changedTouches[0].pageX-left-1))
-        console.log(parseInt(e.nativeEvent.changedTouches[0].pageY-top-1))
-        alert(e.nativeEvent.changedTouches.length)
-        if(e.nativeEvent.changedTouches.length==2){
-            var touch1 = {x:parseInt(e.nativeEvent.changedTouches[0].pageX-left-1),y:parseInt(e.nativeEvent.changedTouches[0].pageY-top-1)}
-            var touch2 = {x:parseInt(e.nativeEvent.changedTouches[1].pageX-left-1),y:parseInt(e.nativeEvent.changedTouches[1].pageY-top-1)}
+        //e.preventDefault()
+        ilog("identifier: ")
+        ilog(e.targetTouches[e.targetTouches.length-1].identifier)
 
-            alert(touch1.x)
-            alert(touch1.y)
-            alert(touch2.x)
-            alert(touch2.y)
-        }*/
+        var x = parseInt(e.targetTouches[0].pageX - left - 1);
+        var y = parseInt(e.targetTouches[0].pageY - top - 1);
+        console.log("x: "+x)
+        console.log("y: "+y)
+        if(this.touchCounter==1)
+        {
+            this.props.actions.selection_local_selectPieObjectByAngle(Math.round(pixelToDegree(x,y)))
+            this.touchStart.x = x
+            this.touchStart.y = y
+            this.touchStart.identifier= e.targetTouches[e.targetTouches.length-1].identifier
+            this.touchStart.angle=Math.round(pixelToDegree(x,y))
+        }
+        if(this.touchCounter==2)
+        {
+            this.touchSecond.x = x
+            this.touchSecond.y = y
+            this.touchSecond.identifier= e.targetTouches[e.targetTouches.length-1].identifier
+            this.touchSecond.angle=Math.round(pixelToDegree(x,y))
+        }
+
+
+
+
     }
 
     handleTouchMove(e){
         console.log("top: "+ top +"left: "+ left)
+
+
         e.preventDefault()
         //console.log(e.nativeEvent)
         //ilog(parseInt(e.nativeEvent.changedTouches[0].pageX-left-1))
         //ilog(parseInt(e.nativeEvent.changedTouches[0].pageY-top-1))
         //ilog(e.nativeEvent.changedTouches.length)
-        if(e.nativeEvent.changedTouches.length==2){
-            var touch1 = {x:parseInt(e.nativeEvent.changedTouches[0].pageX-left-1),y:
-                parseInt(e.nativeEvent.changedTouches[0].pageY-top-1)}
-            var touch2 = {x:parseInt(e.nativeEvent.changedTouches[1].pageX-left-1),y:parseInt(e.nativeEvent.changedTouches[1].pageY-top-1)}
-      // ilog(e.nativeEvent.changedTouches.length)
-          /*  alert(touch1.x)
-            alert(touch1.y)
-            alert(touch2.x)
-            alert(touch2.y)*/
+        if(e.nativeEvent.changedTouches.length==1 && this.touchCounter==2 && e.nativeEvent.changedTouches[0].identifier == this.touchSecond.identifier){
+            this.touchSecond.x  = parseInt(e.nativeEvent.changedTouches[0].pageX-left-1)
+            this.touchSecond.y = parseInt(e.nativeEvent.changedTouches[0].pageY-top-1)
+            this.touchSecond.angle = Math.round(pixelToDegree(this.touchSecond.x,this.touchSecond.y))
+            var delAngle = this.touchSecond.angle - this.touchStart.angle
+
+            if(delAngle<0)
+            {
+                this.props.actions.selection_local_updateAllSelectedPies(this.touchSecond.angle,Math.abs(delAngle),"white")
+            }
+            else if (delAngle>0)
+            {
+                this.props.actions.selection_local_updateAllSelectedPies(this.touchStart.angle,Math.abs(delAngle),"white")
+
+            }
+
+            var except = this.subtractArrayById(this.props.pieState,this.props.selectionState)
+
+            this.drawPiesWithPieState(except,this.props.selectionState)
+
+                    //ilog(delAngle)
         }
+
+
+            //ilog("changedTouches.length:")
+            //ilog(e.nativeEvent.changedTouches.length)
+            //ilog("touch Start bool: ")
+            //ilog(e.nativeEvent.changedTouches[0].identifier == this.touchStart.identifier)
+        if(e.nativeEvent.changedTouches.length==1 && this.touchCounter==1 && e.nativeEvent.changedTouches[0].identifier == this.touchStart.identifier)
+        {
+
+            this.props.actions.selection_local_updateSelectedPiesAngleByAngle(pixelToDegree(parseInt(e.targetTouches[0].pageX - left - 1),parseInt(e.targetTouches[0].pageY - top - 1)))
+            //log("this.props.selectionState")
+            //log(this.props.selectionState)
+
+            var except = this.subtractArrayById(this.props.pieState,this.props.selectionState)
+            //log("except")
+            //log(except)
+            this.drawPiesWithPieState(except,this.props.selectionState)
+            //log("x: "+x)
+            //log("y: "+y)
+            //log("counter: "+this.counter)
+            //log(e.nativeEvent)
+
+        }
+
+
+
+
+
+
+
     }
 
     handleTouchEnd(e){
@@ -467,9 +515,21 @@ class Root extends Component {
         ilog("Touch End")
         ilog(this.touchCounter)
         console.log(e.nativeEvent)
+
+        var selectionState = this.props.selectionState
+        for (var key in selectionState){
+            this.props.actions.pie_local_updatePieFromState(selectionState[key].id,selectionState[key].startingAngle,selectionState[key].angleValue,selectionState[key].color,selectionState[key].className,selectionState[key].amOrPm)
+        }
+
+        setTimeout(()=>{
+
+            this.drawPiesWithPieState(this.props.pieState)
+
+        }, 10);
+
     }
 
-    handleTouchCancle(){
+    handleTouchCancel(){
         this.touchCounter=0;
         ilog("Touch End")
 
@@ -479,7 +539,7 @@ class Root extends Component {
             <div id="Root" >
 
 
-                <canvas onTouchCancle={this.handleTouchCancle.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="500" width="500" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
+                <canvas onTouchCancle={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="500" width="500" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
 
                 </canvas>
 

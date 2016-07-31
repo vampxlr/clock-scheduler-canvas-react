@@ -16,4 +16,4 @@ for testing chrome extension once
 for testing chrome extension auto reload on file changes
 "npm run test:watch"
 _________________________________
-note: Unpacked version of chrome app is in folder "client"
+note: Unpacked version of app is in folder "client"
