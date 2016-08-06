@@ -12,29 +12,29 @@ exports.pixelToDegree=function(x,y,centerX=250,centerY=250){
 
     var delY = y - centerY
     var delX = x - centerX
-    var quardant = 1;
+    var quadrant = 1;
 
     var gradient = delY/delX
     var radSlope = Math.atan(gradient)
     var  degrees = exports.radiansToDegrees(radSlope)
     if(delY>0 && delX>0)
     {
-        quardant = 1
+        quadrant = 1
     }
 
     if(delY>0 && delX<0)
     {
-        quardant = 2
+        quadrant = 2
         return degrees + 180
     }
     if(delY<=0 && delX<0)
     {
-        quardant = 3
+        quadrant = 3
         return degrees + 180
     }
-    if(delY<0 && delX>0)
+    if(delY<0 && delX>=0)
     {
-        quardant = 4
+        quadrant = 4
         return 360 + degrees
     }
 

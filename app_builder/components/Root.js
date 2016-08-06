@@ -275,14 +275,15 @@ class Root extends Component {
     componentDidMount(){
 
         //var scrollPositionFromTop =(window.pageYOffset || document.scrollTop)  - (document.clientTop || 0);
+
+
         //scrollPositionFromTop = (scrollPositionFromTop==NaN)?0:scrollPositionFromTop
         //var scrollPositionFromleft =(window.pageXOffset || document.scrollLeft) - (document.clientLeft || 0);
         //scrollPositionFromleft = (scrollPositionFromleft==NaN)?0:scrollPositionFromleft
         var element = document.getElementById('myCan');
         this.canvasWidth=element.width;
         this.canvasHeight=element.height;
-        top = element.getBoundingClientRect().top + window.pageYOffset - element.ownerDocument.documentElement.clientTop
-        left = element.getBoundingClientRect().left + window.pageXOffset - element.ownerDocument.documentElement.clientLeft
+
 
 
 //        console.log(element.getBoundingClientRect())
@@ -291,7 +292,13 @@ class Root extends Component {
 
             this.drawPiesWithPieState(this.props.pieState)
             log(this.props.pieState)
-
+            ilog(window.pageYOffset || 0)
+            ilog(document.scrollTop || 0)
+            ilog(document.clientTop || 0)
+            var currentScrollYPosition = document.clientTop || 0
+            var currentScrollXPosition = document.clientLeft || 0
+            top = element.getBoundingClientRect().top + window.pageYOffset - element.ownerDocument.documentElement.clientTop +currentScrollYPosition
+            left = element.getBoundingClientRect().left + window.pageXOffset - element.ownerDocument.documentElement.clientLeft + currentScrollXPosition
         }, 10);
 
         setTimeout(()=>{
@@ -425,6 +432,7 @@ class Root extends Component {
         //console.log(e.nativeEvent)
         console.log(e.nativeEvent)
         ilog("touch Start")
+
         ilog(this.touchCounter)
         //e.preventDefault()
         ilog("identifier: ")
@@ -432,8 +440,9 @@ class Root extends Component {
         var event = e.nativeEvent
         var x = parseInt(e.targetTouches[0].pageX - left - 1);
         var y = parseInt(e.targetTouches[0].pageY - top - 1);
-        console.log("x: "+x)
-        console.log("y: "+y)
+        ilog("x: "+x)
+        ilog("y: "+y)
+        ilog("angle: "+Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
         if(this.touchCounter==1)
         {
             this.props.actions.selection_local_selectPieObjectByAngle(Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
@@ -445,6 +454,8 @@ class Root extends Component {
                     ilog("set time out")
                     ilog(JSON.stringifyOnce(this.props.selectionState))
                     ilog(JSON.stringifyOnce(this.props.pieState))
+                    //console.log(this.props.selectionState)
+                    //console.log(this.props.pieState)
 
                     this.touchFirst.pieStartingAngle= (this.props.selectionState.length>0)? this.props.selectionState[0].startingAngle:0
                     this.touchFirst.pieClosingAngle=this.touchFirst.pieStartingAngle + ( (this.props.selectionState.length>0)?this.props.selectionState[0].angleValue:0 )
@@ -526,9 +537,9 @@ class Root extends Component {
         var x1 = parseInt(e.targetTouches[0].pageX - left - 1);
         var y1 = parseInt(e.targetTouches[0].pageY - top - 1);
         var angle1 = pixelToDegree(x1,y1,this.canvasWidth/2,this.canvasHeight/2)
-      /*  ilog(angle1)
+        ilog(angle1)
         ilog("x1:"+ x1)
-        ilog("y1:"+ y1)*/
+        ilog("y1:"+ y1)
         var delAngleFirstTouchAngle1 = Math.abs(this.touchFirst.startAngle-angle1)
         //ilog("changedTouches.length:")
         //ilog(e.nativeEvent.changedTouches.length)
@@ -567,7 +578,7 @@ class Root extends Component {
             //ilog("inside move")
             this.touchOperationStatus="move"
             var selectedAngle = pixelToDegree(parseInt(e.targetTouches[0].pageX - left - 1),parseInt(e.targetTouches[0].pageY - top - 1),this.canvasWidth/2,this.canvasHeight/2)
-            this.props.actions.selection_local_updateSelectedPiesAngleByAngle(pixelToDegree(parseInt(e.targetTouches[0].pageX - left - 1),parseInt(e.targetTouches[0].pageY - top - 1),this.canvasWidth/2,this.canvasHeight/2))
+            this.props.actions.selection_local_updateSelectedPiesAngleByAngle(selectedAngle)
 
 
             //log("this.props.selectionState")

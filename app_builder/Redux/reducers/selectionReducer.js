@@ -10,6 +10,14 @@ function filterId(obj){
     return obj.id;
 }
 
+function into360(angle){
+
+    while(angle>359){
+        angle = angle-360
+    }
+return angle
+}
+
 export default function selectionReducer(selectionState=[],action){
     let new_selectionState = [...selectionState];
     let new_pieState
@@ -27,7 +35,19 @@ export default function selectionReducer(selectionState=[],action){
 
 
             return new_pieState.filter(function(v) {
-                return v.startingAngle <= action.angle && (v.startingAngle+v.angleValue) >= action.angle;
+                var firstCondition = v.startingAngle <= action.angle
+                var thirdCondition = (((v.startingAngle+v.angleValue)>360) && v.startingAngle>action.angle)
+                var secondCondition =((v.startingAngle+v.angleValue) >= ((((v.startingAngle+v.angleValue)>360) && v.startingAngle>action.angle)? action.angle+360:action.angle))
+
+                if(v.angleValue>=0){
+                    return v.startingAngle <= ((((v.startingAngle+v.angleValue)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle) && ((v.startingAngle+v.angleValue) >= ((((v.startingAngle+v.angleValue)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle));
+
+                }else{
+                    var angleValueNormalized = v.angleValue + 360
+                    return v.startingAngle <= ((((v.startingAngle+angleValueNormalized)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle) && ((v.startingAngle+angleValueNormalized) >= ((((v.startingAngle+angleValueNormalized)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle));
+
+                }
+
             });
 
         case'SELECTION_LOCAL_UPDATE_SELECTED_PIES_ANGLE_BY_ANGLE':
@@ -36,7 +56,7 @@ export default function selectionReducer(selectionState=[],action){
 
             new_pieState= new_pieState.map(pie=>{
                 return pie.id === pie.id ?
-                    Object.assign({}, pie,{startingAngle: action.angle-(pie.angleValue/2)}):
+                    Object.assign({}, pie,{startingAngle: (pie.angleValue>=0)? action.angle-(pie.angleValue/2) : action.angle-((pie.angleValue+360)/2) }):
                     pie
             })
 
