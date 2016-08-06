@@ -36,7 +36,7 @@ export default function selectionReducer(selectionState=[],action){
 
             new_pieState= new_pieState.map(pie=>{
                 return pie.id === pie.id ?
-                    Object.assign({}, pie,{startingAngle: action.angle-(15)}):
+                    Object.assign({}, pie,{startingAngle: action.angle-(pie.angleValue/2)}):
                     pie
             })
 

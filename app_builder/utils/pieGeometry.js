@@ -35,6 +35,7 @@ exports.pixelToDegree=function(x,y,centerX=250,centerY=250){
     if(delY<0 && delX>0)
     {
         quardant = 4
+        return 360 + degrees
     }
 
 

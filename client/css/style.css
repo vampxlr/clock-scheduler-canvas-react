@@ -1,0 +1,19 @@
+#cellphoneFrame{
+    border-radius: 10px;
+    position: relative;
+    background-color: #4A4464;
+    height: 500px;
+    width: 300px;
+
+}
+
+#myCan{
+    background-color: #4A4464;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+}
