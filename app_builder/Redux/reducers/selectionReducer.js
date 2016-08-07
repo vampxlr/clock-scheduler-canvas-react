@@ -75,7 +75,7 @@ export default function selectionReducer(selectionState=[],action){
              new_pieState = new_pieState.map(function(obj){
                 obj.startingAngle = action.startingAngle;
                 obj.angleValue = action.angleValue;
-                obj.color = action.color;
+                obj.color = (action.color=="black")?obj.color:action.color;
                 obj.className = action.className;
                 return obj;
             });

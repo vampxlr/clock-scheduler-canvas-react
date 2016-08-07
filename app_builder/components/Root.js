@@ -292,19 +292,19 @@ class Root extends Component {
 
             this.drawPiesWithPieState(this.props.pieState)
             log(this.props.pieState)
-            ilog(window.pageYOffset || 0)
-            ilog(document.scrollTop || 0)
-            ilog(document.clientTop || 0)
+            //ilog(window.pageYOffset || 0)
+            //ilog(document.scrollTop || 0)
+            //ilog(document.clientTop || 0)
             //var currentScrollYPosition = document.clientTop || 0
             //var currentScrollXPosition = document.clientLeft || 0
             top = element.getBoundingClientRect().top  - element.ownerDocument.documentElement.clientTop
             left = element.getBoundingClientRect().left  - element.ownerDocument.documentElement.clientLeft
 
-            ilog("element.getBoundingClientRect().top: " + element.getBoundingClientRect().top)
-            ilog("window.pageYOffset: " + window.pageYOffset)
-            ilog("element.ownerDocument.documentElement.clientTop: " + element.ownerDocument.documentElement.clientTop)
-            ilog("top: " + top)
-            ilog("left: " + left)
+            //ilog("element.getBoundingClientRect().top: " + element.getBoundingClientRect().top)
+            //ilog("window.pageYOffset: " + window.pageYOffset)
+            //ilog("element.ownerDocument.documentElement.clientTop: " + element.ownerDocument.documentElement.clientTop)
+            //ilog("top: " + top)
+            //ilog("left: " + left)
         }, 10);
 
         setTimeout(()=>{
@@ -437,29 +437,29 @@ class Root extends Component {
         //console.log(element.getBoundingClientRect())
         //console.log(e.nativeEvent)
         console.log(e.nativeEvent)
-        ilog("touch Start")
+        //ilog("touch Start")
 
-        ilog(this.touchCounter)
+        //ilog(this.touchCounter)
         //e.preventDefault()
-        ilog("identifier: ")
-        ilog(e.targetTouches[e.targetTouches.length-1].identifier)
+        //ilog("identifier: ")
+        //ilog(e.targetTouches[e.targetTouches.length-1].identifier)
         var event = e.nativeEvent
         var x = parseInt(e.targetTouches[0].pageX - left - 1);
         var y = parseInt(e.targetTouches[0].pageY - top - 1);
-        ilog("x: "+x)
-        ilog("y: "+y)
-        ilog("angle: "+Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
+        //ilog("x: "+x)
+        //ilog("y: "+y)
+        //ilog("angle: "+Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
         if(this.touchCounter==1)
         {
             this.props.actions.selection_local_selectPieObjectByAngle(Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
             this.touchFirst.x = x
             this.touchFirst.y = y
-            ilog("inside first touch")
+            //ilog("inside first touch")
 
                 setTimeout(function(){
-                    ilog("set time out")
-                    ilog(JSON.stringifyOnce(this.props.selectionState))
-                    ilog(JSON.stringifyOnce(this.props.pieState))
+                    //ilog("set time out")
+                    //ilog(JSON.stringifyOnce(this.props.selectionState))
+                    //ilog(JSON.stringifyOnce(this.props.pieState))
                     //console.log(this.props.selectionState)
                     //console.log(this.props.pieState)
 
@@ -468,8 +468,8 @@ class Root extends Component {
                     this.touchFirst.identifier= event.targetTouches[event.targetTouches.length-1].identifier
                     this.touchFirst.angle=Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2))
                     this.touchFirst.startAngle=Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2))
-                    ilog("-----this.touchFirst.startAngle----")
-                    ilog(this.touchFirst.startAngle)
+                    //ilog("-----this.touchFirst.startAngle----")
+                    //ilog(this.touchFirst.startAngle)
 
                 }.bind(this), 10)
 
@@ -484,8 +484,8 @@ class Root extends Component {
             this.touchSecond.identifier= e.targetTouches[e.targetTouches.length-1].identifier
             this.touchSecond.angle=Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2))
             this.touchSecond.startAngle=Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2))
-            ilog("this.touchSecond.startAngle")
-            ilog(this.touchSecond.startAngle)
+            //ilog("this.touchSecond.startAngle")
+            //ilog(this.touchSecond.startAngle)
 
         }
 
@@ -521,11 +521,11 @@ class Root extends Component {
             if(delStartAngle<0)
             {
                 //this.props.actions.selection_local_updateAllSelectedPies(this.touchSecond.angle,Math.abs(delAngle),"white")
-                this.props.actions.selection_local_updateAllSelectedPies(this.touchSecond.angle,(delAngleClosingAndSecondTouch),"white")
+                this.props.actions.selection_local_updateAllSelectedPies(this.touchSecond.angle,(delAngleClosingAndSecondTouch))
             }
             else if (delStartAngle>0)
             {
-                this.props.actions.selection_local_updateAllSelectedPies(this.touchFirst.pieStartingAngle,(delAngleStartingAndSecondTouch),"white")
+                this.props.actions.selection_local_updateAllSelectedPies(this.touchFirst.pieStartingAngle,(delAngleStartingAndSecondTouch))
                 //this.props.actions.selection_local_updateAllSelectedPies(startingAngle,Math.abs(delAngle),"white")
 
             }
@@ -543,9 +543,9 @@ class Root extends Component {
         var x1 = parseInt(e.targetTouches[0].pageX - left - 1);
         var y1 = parseInt(e.targetTouches[0].pageY - top - 1);
         var angle1 = pixelToDegree(x1,y1,this.canvasWidth/2,this.canvasHeight/2)
-        ilog(angle1)
-        ilog("x1:"+ x1)
-        ilog("y1:"+ y1)
+        //ilog(angle1)
+        //ilog("x1:"+ x1)
+        //ilog("y1:"+ y1)
         var delAngleFirstTouchAngle1 = Math.abs(this.touchFirst.startAngle-angle1)
         //ilog("changedTouches.length:")
         //ilog(e.nativeEvent.changedTouches.length)
@@ -611,8 +611,8 @@ class Root extends Component {
 
     handleTouchEnd(e){
         this.touchCounter=this.touchCounter=0;
-        ilog("Touch End")
-        ilog(this.touchCounter)
+        //ilog("Touch End")
+        //ilog(this.touchCounter)
         console.log(e.nativeEvent)
 
         var selectionState = this.props.selectionState
@@ -630,7 +630,7 @@ class Root extends Component {
 
     handleTouchCancel(){
         this.touchCounter=0;
-        ilog("Touch End")
+        //ilog("Touch End")
 
     }
     render(){
