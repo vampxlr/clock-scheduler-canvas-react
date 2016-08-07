@@ -295,10 +295,16 @@ class Root extends Component {
             ilog(window.pageYOffset || 0)
             ilog(document.scrollTop || 0)
             ilog(document.clientTop || 0)
-            var currentScrollYPosition = document.clientTop || 0
-            var currentScrollXPosition = document.clientLeft || 0
-            top = element.getBoundingClientRect().top + window.pageYOffset - element.ownerDocument.documentElement.clientTop +currentScrollYPosition
-            left = element.getBoundingClientRect().left + window.pageXOffset - element.ownerDocument.documentElement.clientLeft + currentScrollXPosition
+            //var currentScrollYPosition = document.clientTop || 0
+            //var currentScrollXPosition = document.clientLeft || 0
+            top = element.getBoundingClientRect().top  - element.ownerDocument.documentElement.clientTop
+            left = element.getBoundingClientRect().left  - element.ownerDocument.documentElement.clientLeft
+
+            ilog("element.getBoundingClientRect().top: " + element.getBoundingClientRect().top)
+            ilog("window.pageYOffset: " + window.pageYOffset)
+            ilog("element.ownerDocument.documentElement.clientTop: " + element.ownerDocument.documentElement.clientTop)
+            ilog("top: " + top)
+            ilog("left: " + left)
         }, 10);
 
         setTimeout(()=>{

@@ -35,18 +35,24 @@ export default function selectionReducer(selectionState=[],action){
 
 
             return new_pieState.filter(function(v) {
-                var firstCondition = v.startingAngle <= action.angle
-                var thirdCondition = (((v.startingAngle+v.angleValue)>360) && v.startingAngle>action.angle)
-                var secondCondition =((v.startingAngle+v.angleValue) >= ((((v.startingAngle+v.angleValue)>360) && v.startingAngle>action.angle)? action.angle+360:action.angle))
 
+                var angleValue;
+                var startingAngle;
                 if(v.angleValue>=0){
-                    return v.startingAngle <= ((((v.startingAngle+v.angleValue)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle) && ((v.startingAngle+v.angleValue) >= ((((v.startingAngle+v.angleValue)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle));
-
-                }else{
-                    var angleValueNormalized = v.angleValue + 360
-                    return v.startingAngle <= ((((v.startingAngle+angleValueNormalized)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle) && ((v.startingAngle+angleValueNormalized) >= ((((v.startingAngle+angleValueNormalized)>360) && (v.startingAngle>action.angle))? parseInt(action.angle+360):action.angle));
-
+                    angleValue = v.angleValue
+                }else {
+                    angleValue = v.angleValue + 360
                 }
+                if(v.startingAngle>=0){
+                    startingAngle = v.startingAngle
+                }else{
+                    startingAngle = v.startingAngle +360
+                }
+
+                return startingAngle <= ((((startingAngle+angleValue)>360) && (startingAngle>action.angle))? parseInt(action.angle+360):action.angle) && ((startingAngle+angleValue) >= ((((startingAngle+angleValue)>360) && (startingAngle>action.angle))? parseInt(action.angle+360):action.angle));
+
+
+
 
             });
 
