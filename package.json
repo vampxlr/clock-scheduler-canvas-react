@@ -5,6 +5,7 @@
   "engines": {
     "node": "4.2.4"
   },
+  "main": "index.js",
   "scripts": {
 	"start": "node index.js",
     "serve": "nodemon server/server.js",
@@ -19,17 +20,13 @@
     "babel-preset-react": "^6.1.18",
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-1": "^6.5.0",
-    "chai": "^3.5.0",
-    "chai-jquery": "^2.0.0",
-    "domino": "^1.0.25",
+
+
     "express": "^4.13.4",
     "fs": "0.0.2",
-    "global-tunnel": "^1.2.0",
-    "http": "0.0.0",
-    "http-request": "^0.7.0",
-    "jquery": "^2.2.4",
-    "jsdom": "^8.1.0",
-    "mocha": "^2.4.5",
+ 
+
+
     "react": "^0.14.3",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.3",
@@ -39,12 +36,11 @@
     "redux-logger": "^2.6.0",
     "redux-thunk": "^2.0.1",
     "request": "^2.72.0",
-    "sinon-chrome": "^1.1.2",
-    "toastr": "^2.1.2",
+
+
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.7.1",
-    "xmlhttprequest": "^1.8.0",
-    "xmlhttprequest-cookie": "^0.9.4"
+    "webpack-hot-middleware": "^2.7.1"
+
   }
 }

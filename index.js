@@ -1,27 +1,22 @@
+
+
 var express = require('express');
-var path = require('path');
-//var config = require('./webpack.config.js');
-//var webpack = require('webpack');
-//var webpackDevMiddleware = require('webpack-dev-middleware');
-//var webpackHotMiddleware = require('webpack-hot-middleware');
-
-
 var app = express();
 
-//app.user(webpack in dev mode)
-//var compiler = webpack(config);
-//app.use(webpackDevMiddleware(compiler,{noInfo:true,publicPath: config.output.publicPath}));
-//app.use(webpackHotMiddleware(compiler));
+app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static('./client'));
+app.use(express.static(__dirname + '/client'));
 
-app.use('/', function (req, res) {
-    res.sendFile(path.resolve('client/index.html'));
+
+// views is directory for all template files
+
+
+app.get('/', function(request, response) {
+  response.render('client/index');
 });
 
-var port = 5000;
-
-app.listen(port, function(error) {
-  if (error) throw error;
-  console.log("Express server listening on port", port);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
+
+
