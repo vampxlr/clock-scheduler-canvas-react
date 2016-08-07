@@ -26,8 +26,8 @@
       <file leaf-file-name="Root.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app_builder/components/Root.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83362216">
-              <caret line="686" column="40" selection-start-line="686" selection-start-column="40" selection-end-line="686" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.21837088">
+              <caret line="537" column="0" selection-start-line="537" selection-start-column="0" selection-end-line="537" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#ilog#0" expanded="false" />
                 <element signature="e#424#1878#0" expanded="false" />
@@ -51,8 +51,7 @@
                 <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-                <element signature="e#17607#19827#0" expanded="false" />
-                <element signature="e#22255#23063#0" expanded="false" />
+                <element signature="e#23335#24625#0" expanded="false" />
                 <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
               </folding>
@@ -431,8 +430,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -496,8 +494,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -561,8 +558,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -624,8 +620,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -687,8 +682,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -743,8 +737,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -792,8 +785,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
@@ -953,8 +945,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app_builder/components/Root.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83362216">
-          <caret line="686" column="40" selection-start-line="686" selection-start-column="40" selection-end-line="686" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.21837088">
+          <caret line="537" column="0" selection-start-line="537" selection-start-column="0" selection-end-line="537" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#ilog#0" expanded="false" />
             <element signature="e#424#1878#0" expanded="false" />
@@ -978,8 +970,7 @@
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
-            <element signature="e#17607#19827#0" expanded="false" />
-            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="e#23335#24625#0" expanded="false" />
             <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>

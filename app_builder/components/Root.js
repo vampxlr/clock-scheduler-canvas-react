@@ -547,6 +547,8 @@ class Root extends Component {
         //ilog(e.nativeEvent.changedTouches.length)
         if(e.nativeEvent.changedTouches.length==1 && this.touchCounter==2 && e.nativeEvent.changedTouches[0].identifier == this.touchSecond.identifier && (this.touchOperationStatus=="neutral"||this.touchOperationStatus=="resize")){
             ilog("in resize")
+            clearInterval(this.singleTouchTimeCounterSetInterval);
+
             this.touchOperationStatus=="resize"
             ilog("this.touchSecond.startAngle")
             ilog(this.touchSecond.startAngle)
@@ -627,6 +629,7 @@ class Root extends Component {
         }
         if(e.nativeEvent.changedTouches.length==1 && this.touchCounter==1 && e.nativeEvent.changedTouches[0].identifier == this.touchFirst.identifier && (this.touchOperationStatus=="neutral"||this.touchOperationStatus=="move") && (delAngleFirstTouchAngle1>20||this.touchOperationStatus=="move")  )
         {
+
             //ilog("inside move")
             this.touchOperationStatus="move"
             var selectedAngle = pixelToDegree(parseInt(e.targetTouches[0].pageX - left - 1),parseInt(e.targetTouches[0].pageY - top - 1),this.canvasWidth/2,this.canvasHeight/2)
