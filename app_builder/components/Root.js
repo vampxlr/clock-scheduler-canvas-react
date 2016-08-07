@@ -198,7 +198,9 @@ class Root extends Component {
         this.touchCounter=0;
         this.touchFirst={x:0,y:0,angle:0,identifier:0,pieStartingAngle:0,pieClosingAngle:0};
         this.touchSecond={x:0,y:0,angle:0,identifier:0};
-        this.touchOperationStatus="neutral"
+        this.touchOperationStatus="neutral";
+        this.singleTouchTimeCounter=0;
+        this.singleTouchTimeCounterSetInterval=function(){};
         this.state = {
             circle:[],
             styleSheetRef:[]
@@ -467,6 +469,30 @@ class Root extends Component {
         //ilog("angle: "+Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
         if(this.touchCounter==1)
         {
+
+
+            if(this.touchOperationStatus=="neutral"){
+                this.singleTouchTimeCounterSetInterval = setInterval(()=>{
+
+                    if(this.touchOperationStatus=="neutral" && this.singleTouchTimeCounter >1){
+                        this.touchOperationStatus="delete"
+                        this.props.actions.selection_local_selectPieObjectByAngle(Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
+                        var except = this.subtractArrayById(this.props.pieState,this.props.selectionState)
+                        //log("except")
+                        //log(except)
+                        this.drawPiesWithPieState(except,this.props.selectionState)
+                    }
+
+
+                    this.singleTouchTimeCounter= this.singleTouchTimeCounter+1
+                    ilog(this.touchOperationStatus)
+                    ilog(this.singleTouchTimeCounter)
+                }, 1000);
+            }
+
+            /*if(this.singleTouchTimeCounter>4 && this.touchOperationStatus=="neutral"){
+                this.touchOperationStatus="delete"
+            }*/
             this.props.actions.selection_local_selectPieObjectByAngle(Math.round(pixelToDegree(x,y,this.canvasWidth/2,this.canvasHeight/2)))
             this.touchFirst.x = x
             this.touchFirst.y = y
@@ -622,7 +648,47 @@ class Root extends Component {
         }
 
 
+        if(e.nativeEvent.changedTouches.length==1 && this.touchCounter==1 && e.nativeEvent.changedTouches[0].identifier == this.touchFirst.identifier && (this.touchOperationStatus=="delete"))
+        {
 
+            var x1 = parseInt(e.targetTouches[0].pageX - left - 1);
+            var y1 = parseInt(e.targetTouches[0].pageY - top - 1);
+            var centerX = this.canvasWidth/2
+            var centerY = this.canvasHeight/2
+
+            var distance = Math.sqrt( (x1-centerX)*(x1-centerX) + (y1-centerY)*(y1-centerY) );
+            //ilog("distance:" + distance)
+          if(distance>this.canvasHeight/2){
+
+              var r = confirm("Delete The Selected Pie!");
+              if (r == true) {
+
+
+                  clearInterval(this.singleTouchTimeCounterSetInterval);
+                  var selectionState = this.props.selectionState
+                  for (var key in selectionState){
+                      this.props.actions.pie_local_deletePieFromState(selectionState[key].id)
+                  }
+                  setTimeout(()=>{
+
+                      this.drawPiesWithPieState(this.props.pieState)
+
+                  }, 10);
+                  this.handleTouchEnd(e)
+              } else {
+
+
+                  clearInterval(this.singleTouchTimeCounterSetInterval);
+                  setTimeout(()=>{
+
+                      this.drawPiesWithPieState(this.props.pieState)
+
+                  }, 10);
+                  this.handleTouchEnd(e)
+              }
+
+          }
+        }
 
 
 
@@ -630,7 +696,9 @@ class Root extends Component {
     }
 
     handleTouchEnd(e){
-        this.touchCounter=this.touchCounter=0;
+        clearInterval(this.singleTouchTimeCounterSetInterval);
+        this.touchCounter=0;
+        this.singleTouchTimeCounter=0;
         //ilog("Touch End")
         //ilog(this.touchCounter)
         console.log(e.nativeEvent)

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0525602-05f4-4e2e-a216-3f58865de524" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app_builder/components/Root.js" afterPath="$PROJECT_DIR$/app_builder/components/Root.js" />
     </list>
     <ignored path="clock-scheduler-dom.iws" />
@@ -27,20 +26,21 @@
       <file leaf-file-name="Root.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app_builder/components/Root.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31683168">
-              <caret line="261" column="17" selection-start-line="261" selection-start-column="17" selection-end-line="261" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.83362216">
+              <caret line="686" column="40" selection-start-line="686" selection-start-column="40" selection-end-line="686" selection-end-column="40" />
               <folding>
                 <element signature="n#!!block;n#ilog#0" expanded="false" />
                 <element signature="e#424#1878#0" expanded="false" />
                 <element signature="n#!!block;n#log#0" expanded="false" />
                 <element signature="n#!!block;n#sumTo#0" expanded="false" />
                 <element signature="n#!!block;n#randomColor#0" expanded="false" />
+                <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-                <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+                <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -50,7 +50,11 @@
                 <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
                 <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-                <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+                <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+                <element signature="e#17607#19827#0" expanded="false" />
+                <element signature="e#22255#23063#0" expanded="false" />
+                <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+                <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -70,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/app_builder/Redux/action.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="58" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="58" />
+              <caret line="35" column="32" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -347,9 +351,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2306003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2306003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -410,12 +414,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -425,7 +430,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -470,12 +479,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -485,7 +495,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -530,12 +544,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -545,7 +560,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -588,12 +607,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -603,7 +623,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -646,12 +670,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -661,7 +686,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -697,12 +726,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -712,7 +742,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -741,12 +775,13 @@
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -756,7 +791,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -888,14 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_builder/Redux/action.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="58" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app_builder/Redux/reducers/selectionReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -912,22 +943,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app_builder/Redux/action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app_builder/components/Root.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31683168">
-          <caret line="261" column="17" selection-start-line="261" selection-start-column="17" selection-end-line="261" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.83362216">
+          <caret line="686" column="40" selection-start-line="686" selection-start-column="40" selection-end-line="686" selection-end-column="40" />
           <folding>
             <element signature="n#!!block;n#ilog#0" expanded="false" />
             <element signature="e#424#1878#0" expanded="false" />
             <element signature="n#!!block;n#log#0" expanded="false" />
             <element signature="n#!!block;n#sumTo#0" expanded="false" />
             <element signature="n#!!block;n#randomColor#0" expanded="false" />
+            <element signature="n#!!block;n#getAngleDiff#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#subtractArrayById#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegment#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithAngleColorValue#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#drawSegmentWithLocation#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#initializeCircle#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#drawPiesWithPieState#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#addPieToReduxStateWithAngle#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentDidMount#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#componentWillMount#0;n#Root#0" expanded="false" />
@@ -937,7 +977,11 @@
             <element signature="n#!!block;n#handleDrag#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDeleteAll#0;n#Root#0" expanded="false" />
             <element signature="n#!!block;n#handleDragStart#0;n#Root#0" expanded="false" />
-            <element signature="n#!!block;n#handleTouchStart#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#handleMouseMove#0;n#Root#0" expanded="false" />
+            <element signature="e#17607#19827#0" expanded="false" />
+            <element signature="e#22255#23063#0" expanded="false" />
+            <element signature="n#!!block;n#handleTouchCancel#0;n#Root#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Root#0" expanded="false" />
           </folding>
         </state>
       </provider>
