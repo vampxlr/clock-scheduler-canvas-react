@@ -67,7 +67,17 @@ function sumTo(a, i) {
     return sum;
 }
 
+function ClockOrAnti(angle1=10,angle2=20){
 
+
+    function getAngleDIff(angle1,angle2){
+        a = angle1 - angle2
+        a = (a + 180) % 360 - 180
+        return a
+    }
+
+
+}
 
 
 function randomColor(){
@@ -83,6 +93,11 @@ function randomColor(){
 
 class Root extends Component {
 
+    getAngleDiff(angle1,angle2){
+    var a = angle1 - angle2
+        a = (a + 180) % 360 - 180
+    return a
+    }
 
 
     subtractArrayById(pieStateAll,pieStateSelected){
@@ -504,20 +519,24 @@ class Root extends Component {
         //ilog(parseInt(e.nativeEvent.changedTouches[0].pageY-top-1))
         //ilog(e.nativeEvent.changedTouches.length)
         if(e.nativeEvent.changedTouches.length==1 && this.touchCounter==2 && e.nativeEvent.changedTouches[0].identifier == this.touchSecond.identifier && (this.touchOperationStatus=="neutral"||this.touchOperationStatus=="resize")){
-
+            ilog("in resize")
             this.touchOperationStatus=="resize"
-
+            ilog("this.touchSecond.startAngle")
+            ilog(this.touchSecond.startAngle)
+            ilog("this.touchFirst.startAngle")
+            ilog(this.touchFirst.startAngle)
             this.touchSecond.x  = parseInt(e.nativeEvent.changedTouches[0].pageX-left-1)
             this.touchSecond.y = parseInt(e.nativeEvent.changedTouches[0].pageY-top-1)
             this.touchSecond.angle = Math.round(pixelToDegree(this.touchSecond.x,this.touchSecond.y,this.canvasWidth/2,this.canvasHeight/2))
             var delAngle = this.touchSecond.angle - this.touchFirst.angle
-            var delStartAngle = this.touchSecond.startAngle - this.touchFirst.startAngle
+            //var delStartAngle = this.touchSecond.startAngle - this.touchFirst.startAngle
+            var delStartAngle = this.getAngleDiff(this.touchSecond.startAngle, this.touchFirst.startAngle)
             //var startingAngle = this.props.selectionState.length>0 ? this.props.selectionState[0].startingAngle:0;
             //var closingAngle = this.props.selectionState.length>0 ? this.props.selectionState[0].startingAngle+this.props.selectionState[0].angleValue:0;
             var delAngleClosingAndSecondTouch = this.touchFirst.pieClosingAngle-this.touchSecond.angle
             var delAngleStartingAndSecondTouch = this.touchSecond.angle - this.touchFirst.pieStartingAngle
 
-
+            ilog(delStartAngle)
             if(delStartAngle<0)
             {
                 //this.props.actions.selection_local_updateAllSelectedPies(this.touchSecond.angle,Math.abs(delAngle),"white")
