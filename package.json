@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+	"start": "node index.js",
     "serve": "nodemon server/server.js",
     "build": "webpack --config webpack.config.js",
     "test": "mocha --compilers js:babel-core/register --require ./app_builder/global.js ./app_builder/test/test_helper.js --recursive ./app_builder/test",
