@@ -253,12 +253,13 @@ class Root extends Component {
 
     }
 
-    drawPiesWithPieState(pieState,selectedPieState){
+    drawPiesWithPieState(pieStateOriginal,selectedPieState){
         var canvas = document.getElementById('myCan');
 
         var context = (canvas.getContext) ?
             canvas.getContext('2d') : null;
-
+        var pieState = [...pieStateOriginal]
+        pieState= pieState.reverse()
         context.clearRect(0, 0, canvas.width, canvas.height);
 
 
