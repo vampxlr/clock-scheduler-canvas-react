@@ -1,7 +1,6 @@
 
 exports.saveLocal = function (to,data) {
-    console.log(to)
-    console.log(data)
+
     localStorage.setItem(to, JSON.stringify(data));
 }
 
