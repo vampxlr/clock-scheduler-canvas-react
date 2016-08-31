@@ -28,3 +28,23 @@ canvas {
     outline: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
 }
+
+#canvas_container {
+
+    background-color: #4A4464;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+
+    border-radius: 50%;
+    height: 252px;
+    width:252px;
+
+    overflow: hidden;
+
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+}

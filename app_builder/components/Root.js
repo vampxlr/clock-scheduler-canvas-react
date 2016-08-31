@@ -152,7 +152,7 @@ class Root extends Component {
         context.fillStyle = colors[i];
         context.fill();
 
-        context.restore();
+        //context.restore();
 
     }
 
@@ -175,7 +175,7 @@ class Root extends Component {
         context.fillStyle = color;
         context.fill();
 
-        context.restore();
+        //context.restore();
 
     }
 
@@ -237,6 +237,8 @@ class Root extends Component {
 
 
 
+
+
     }
 
 
@@ -260,7 +262,7 @@ class Root extends Component {
         context.fillStyle = "#fff";
         context.fill();
 
-        context.restore();
+        //context.restore();
 
         //drawSegmentLabel(canvas, context, i);
     }
@@ -339,8 +341,9 @@ class Root extends Component {
             canvas.getContext('2d') : null;
         var pieState = [...pieStateOriginal]
         pieState= pieState.reverse()
+        context.beginPath();
         context.clearRect(0, 0, canvas.width, canvas.height);
-
+        context.save()
 
         this.drawSegmentWithAngleColorValue(canvas, context)
 
@@ -356,6 +359,7 @@ class Root extends Component {
                 this.drawSegmentWithAngleColorValue(canvas, context,selectedPieState[key].startingAngle,selectedPieState[key].angleValue,"grey")
             }
         }
+        context.restore();
     }
 
 
@@ -366,10 +370,14 @@ class Root extends Component {
             canvas.getContext('2d') : null;
         var pieState = [...pieStateOriginal]
         pieState= pieState.reverse()
+        //context.restore()
+        //context.clear()
+
         context.clearRect(0, 0, canvas.width, canvas.height);
 
 
         this.drawSegmentWithAngleColorValue(canvas, context)
+
 
         for(var key in pieState)
         {
@@ -379,18 +387,21 @@ class Root extends Component {
         if(selectedPieState){
             for(var key in selectedPieState)
             {
-                context.beginPath();
+                //context.restore()
+             /*   context.beginPath();
                 context.moveTo(canvas.width/2, canvas.height/2);
                 context.arc(canvas.width/2, canvas.height/2, canvas.height/2,
                     0, 2*Math.PI, false);
-                context.closePath();
 
-                context.clip();
+
+                context.clip();*/
+
                 //this.drawSegmentWithAngleColorValue(canvas, context,selectedPieState[key].startingAngle,selectedPieState[key].angleValue,selectedPieState[key].color)
                 this.drawSegmentWithAngleColorValueXY(canvas, context,selectedPieState[key].startingAngle,selectedPieState[key].angleValue,"grey",x,y)
 
             }
         }
+        context.restore();
     }
 
 
@@ -578,7 +589,7 @@ class Root extends Component {
 
                     this.singleTouchTimeCounter= this.singleTouchTimeCounter+1
 
-                }, 1000);
+                }, 500);
             }
 
             /*if(this.singleTouchTimeCounter>4 && this.touchOperationStatus=="neutral"){
@@ -783,8 +794,11 @@ class Root extends Component {
             <div id="Root" >
 
                 <div id="cellphoneFrame">
-                    <canvas onTouchCancle={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
-                    </canvas>
+                    <div id="canvas_container">
+                        <canvas id="canvas" onTouchCancle={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
+                        </canvas>
+                    </div>
+
                 </div>
                 <button id="delete_all_btn" onClick={this.handleDeleteAll.bind(this)}>Delete All</button>
                 <footer ><pre id="log"></pre></footer>
