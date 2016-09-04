@@ -1,10 +1,15 @@
+body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
 #cellphoneFrame{
     border-radius: 10px;
     position: relative;
     background-color: #4A4464;
     height: 500px;
     width: 300px;
-
+    margin:10px auto;
 }
 
 #myCan{
@@ -47,4 +52,26 @@ canvas {
     overflow: hidden;
 
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+}
+
+#infoFrame{
+    border-radius: 10px;
+    height: 500px;
+    width: 300px;
+    background: #5c94cd;
+    margin:10px auto;
+}
+
+.main_body{
+
+    padding: 30px;
+    margin: 2px;
+    border-radius: 5px;
+
+}
+
+footer pre{
+    color: #00ff5b;
+    background-color: #151313;
+    border: 1px solid #000000;
 }

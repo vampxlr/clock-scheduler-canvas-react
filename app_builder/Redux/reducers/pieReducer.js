@@ -1,5 +1,21 @@
 import {saveLocal,getLocal} from '../../utils/webStorage'
 
+
+function into360(angle){
+
+    while(angle>359 || angle<0){
+        if(angle>359){
+            angle = angle-360
+        }
+
+        if( angle<0){
+            angle = angle+360
+        }
+
+    }
+    return angle
+}
+
 function getId(pies) {
     return pies.reduce((maxId,pie)=>{
             return Math.max(pie.id,maxId)

@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import actions from '../redux/action'
 import {radiansToDegrees,pixelToDegree,degreesToRadians} from '../utils/pieGeometry'
-
+import Root_Nav from './root_nav'
 var top
 var left
 
 function into360(angle){
 
-    while(angle>359 && angle<0){
+    while(angle>359 || angle<0){
         if(angle>359){
             angle = angle-360
         }
@@ -406,7 +406,7 @@ class Root extends Component {
 
 
     addPieToReduxStateWithAngle(startingAngle,angleValue){
-        this.props.actions.pie_local_addPieToState(startingAngle-(angleValue/2),angleValue,randomColor(),"pie","AM")
+        this.props.actions.pie_local_addPieToState("s","s",startingAngle-(angleValue/2),angleValue,randomColor(),"pie","AM")
 
     }
 
@@ -436,7 +436,8 @@ class Root extends Component {
 
             top = element.getBoundingClientRect().top  - element.ownerDocument.documentElement.clientTop
             left = element.getBoundingClientRect().left  - element.ownerDocument.documentElement.clientLeft
-
+            ilog(top)
+            ilog(left)
 
         }, 10);
 
@@ -789,19 +790,43 @@ class Root extends Component {
         //ilog("Touch End")
 
     }
+
+    handleClearLog(){
+        var p = document.getElementById('log');
+        p.innerHTML = "Log Cleared";
+    }
     render(){
         return(
-            <div id="Root" >
+            <div id="Root" className="container">
+                <Root_Nav reset_all={this.handleDeleteAll.bind(this)} clear_log={this.handleClearLog.bind(this)}/>
 
-                <div id="cellphoneFrame">
-                    <div id="canvas_container">
-                        <canvas id="canvas" onTouchCancle={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
-                        </canvas>
+
+                <div className="row main_body" >
+                    <div className="col-md-4 col-md-offset-2">
+                        <div id="cellphoneFrame">
+                            <div id="canvas_container">
+                                <canvas id="canvas" onTouchCancel={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
+                                </canvas>
+                            </div>
+
+                        </div>
                     </div>
+                    <div className="col-md-4">
+                        <div id="infoFrame">
 
+
+                        </div>
+                    </div>
                 </div>
-                <button id="delete_all_btn" onClick={this.handleDeleteAll.bind(this)}>Delete All</button>
-                <footer ><pre id="log"></pre></footer>
+
+                <div className="row main_body" >
+                    <footer ><pre id="log">sdsadsa</pre></footer>
+                </div>
+
+
+
+
+
             </div>
         )
     }

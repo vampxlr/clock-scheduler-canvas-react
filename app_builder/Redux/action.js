@@ -8,9 +8,11 @@ let actions = {
         }
 
     },
-    pie_local_addPieToState: function pie_local_addPieToState(startingAngle,angleValue,color,className,amOrPm){
+    pie_local_addPieToState: function pie_local_addPieToState(taskTitle='default title',taskDescription='default description',startingAngle=0,angleValue=360,color='black',className,amOrPm){
         return{
             type:"PIE_LOCAL_ADD_PIE_TO_STATE",
+            taskTitle:taskTitle,
+            taskDescription:taskDescription,
             startingAngle:startingAngle,
             angleValue:angleValue,
             color:color,
