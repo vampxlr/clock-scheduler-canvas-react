@@ -7,6 +7,7 @@ body{
     border-radius: 10px;
     position: relative;
     background-color: #4A4464;
+    background-color: #b7c0ca;
     height: 500px;
     width: 300px;
     margin:10px auto;
@@ -14,8 +15,9 @@ body{
 
 #myCan{
     background-color: #4A4464;
+    background-color: #b7c0ca;
     margin: auto;
-    position: absolute;
+    @position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -37,12 +39,9 @@ canvas {
 #canvas_container {
 
     background-color: #4A4464;
+    background-color: #b7c0ca;
     margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+
 
 
     border-radius: 50%;
@@ -60,6 +59,7 @@ canvas {
     width: 300px;
     background: #5c94cd;
     margin:10px auto;
+	padding:30px;
 }
 
 .main_body{
@@ -74,4 +74,59 @@ footer pre{
     color: #00ff5b;
     background-color: #151313;
     border: 1px solid #000000;
+}
+
+#update_log pre{
+    margin: 20px auto;
+    width: 80%;
+    color: #00ff5b;
+    background-color: #151313;
+    border: 1px solid #000000;
+}
+
+.display_tape{
+	
+
+	margin-bottom:10px;
+    text-align: center;
+    color: white;
+    background-color: #36c2e2;
+    background-color: #546e75;
+
+	 -webkit-box-shadow: 0 8px 6px -6px black;
+     -moz-box-shadow: 0 8px 6px -6px black;
+          box-shadow: 0 8px 6px -6px black;
+}
+
+.display_tape_text{
+	padding:5px
+}
+
+.display_tape ul {
+    text-align:left;padding-top:10px
+}
+
+.display_tape ul li p {
+    padding-right:10px;
+}
+.canvas_containing_container{
+    margin: auto;
+  
+
+    left: 0;
+
+    right: 0;
+}
+
+.tape-container{
+    padding:20px
+}
+
+.badge{
+    background-color: white;
+    color:black;
+}
+
+.cell-footer{
+    padding-top:35px
 }

@@ -7,10 +7,105 @@ import Root_Nav from './root_nav'
 var top
 var left
 
-function into360(angle){
 
-    while(angle>359 || angle<0){
-        if(angle>359){
+function convertHex(hex,opacity){
+    hex = hex.replace('#','');
+   var r = parseInt(hex.substring(0,2), 16);
+   var g = parseInt(hex.substring(2,4), 16);
+   var b = parseInt(hex.substring(4,6), 16);
+
+    var result = 'rgba('+r+','+g+','+b+','+opacity/100+')';
+    return result;
+}
+
+
+function angleToTime(angle){
+    var totalSecInADay ;
+    var secPerAngle
+    var clockAngle
+
+    var timeInSec
+
+    try {
+        totalSecInADay = 86400;
+       secPerAngle = parseInt(totalSecInADay/360)
+        clockAngle = parseInt(into360(into360(angle)+90))
+
+        timeInSec = parseInt(clockAngle * secPerAngle)
+
+     /*   console.log("angle")
+        console.log(angle)
+        console.log("clockAngle")
+        console.log(clockAngle)
+        console.log("timeInSec")
+        console.log(timeInSec)*/
+
+        var seconds = timeInSec;
+// multiply by 1000 because Date() requires miliseconds
+        var date = new Date(seconds * 1000);
+        var hh = date.getUTCHours();
+        var mm = date.getUTCMinutes();
+        var ss = date.getSeconds();
+
+// If you were building a timestamp instead of a duration, you would uncomment the following line to get 12-hour (not 24) time
+// if (hh > 12) {hh = hh % 12;}
+// These lines ensure you have two-digits
+        if (hh < 10) {hh = "0"+hh;}
+        if (mm < 10) {mm = "0"+mm;}
+        if (ss < 10) {ss = "0"+ss;}
+// This formats your string to HH:MM:SS
+        var time_24h = hh+":"+mm+":"+ss;
+        //console.log(time_24h);
+        var am_pm_hh = hh
+        var meridiem = "AM"
+        if(hh>12){
+            am_pm_hh = hh - 12
+            meridiem = "PM"
+        }
+        var time_12h = am_pm_hh+":"+mm+":"+ss + " " + meridiem;
+        //console.log(time_12h);
+        var time = {
+            hh:hh,
+            mm:mm,
+            ss:ss,
+            time_24h:time_24h,
+            time_12h:time_12h,
+            duration:{
+                inSeconds:timeInSec
+            }
+        }
+        return time
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    catch(err) {
+        console.log(err)
+    }
+
+
+
+
+
+}
+
+
+function into360(angle){
+//console.log(angle)
+    while(angle>360 || angle<0){
+        if(angle>360){
             angle = angle-360
         }
 
@@ -156,7 +251,7 @@ class Root extends Component {
 
     }
 
-    drawSegmentWithAngleColorValue(canvas, context,startingAngleDeg=0,angleValue=360,color="#733EE3") {
+    drawSegmentWithAngleColorValue(canvas, context,startingAngleDeg=0,angleValue=360,color="#5c94cd") {
 
         var centerX = Math.floor(canvas.width / 2);
         var centerY = Math.floor(canvas.height / 2);
@@ -172,7 +267,9 @@ class Root extends Component {
             startingAngle, endingAngle, false);
         context.closePath();
 
-        context.fillStyle = color;
+        context.fillStyle = (color=="#5c94cd" || color =="grey")? color: convertHex(color,80);
+
+        //console.log(convertHex(color,80))
         context.fill();
 
         //context.restore();
@@ -406,8 +503,8 @@ class Root extends Component {
 
 
     addPieToReduxStateWithAngle(startingAngle,angleValue){
-        this.props.actions.pie_local_addPieToState("s","s",startingAngle-(angleValue/2),angleValue,randomColor(),"pie","AM")
-
+        this.props.actions.pie_local_addPieToState("No Title","No Description",startingAngle-(angleValue/2),angleValue,randomColor(),"pie","AM")
+        ilog("Pie Added at " + into360(startingAngle-(angleValue/2)) + " angle value of " + angleValue)
     }
 
 
@@ -436,8 +533,8 @@ class Root extends Component {
 
             top = element.getBoundingClientRect().top  - element.ownerDocument.documentElement.clientTop
             left = element.getBoundingClientRect().left  - element.ownerDocument.documentElement.clientLeft
-            ilog(top)
-            ilog(left)
+            //ilog(top)
+            //ilog(left)
 
         }, 10);
 
@@ -724,7 +821,7 @@ class Root extends Component {
 
             this.drawPiesWithPieStateForDelete(except,this.props.selectionState,x1,y1)
 
-            var distance = Math.sqrt( (x1-centerX)*(x1-centerX) + (y1-centerY)*(y1-centerY) );
+            var distance = Math.sqrt( ( x1-centerX )*(x1-centerX) + (y1-centerY)*(y1-centerY) );
             //ilog("distance:" + distance)
           if(distance>(this.canvasHeight/2*1.15)){
 
@@ -776,11 +873,12 @@ class Root extends Component {
         for (var key in selectionState){
             this.props.actions.pie_local_updatePieFromState(selectionState[key].id,selectionState[key].startingAngle,selectionState[key].angleValue,selectionState[key].color,selectionState[key].className,selectionState[key].amOrPm)
         }
-        this.touchOperationStatus = "neutral"
+        ilog("Operation: " + this.touchOperationStatus + " " + into360(selectionState[key].startingAngle) + " angle value of: " + selectionState[key].angleValue)
+
         setTimeout(()=>{
 
             this.drawPiesWithPieState(this.props.pieState)
-
+            this.touchOperationStatus = "neutral"
         }, 10);
 
     }
@@ -798,36 +896,92 @@ class Root extends Component {
     render(){
         return(
             <div id="Root" className="container">
-                <Root_Nav reset_all={this.handleDeleteAll.bind(this)} clear_log={this.handleClearLog.bind(this)}/>
+            <Root_Nav reset_all={this.handleDeleteAll.bind(this)} clear_log={this.handleClearLog.bind(this)}/>
 
 
-                <div className="row main_body" >
-                    <div className="col-md-4 col-md-offset-2">
-                        <div id="cellphoneFrame">
-                            <div id="canvas_container">
-                                <canvas id="canvas" onTouchCancel={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
-                                </canvas>
-                            </div>
+    <div className="row main_body" >
+            <div className="col-md-4 col-md-offset-2">
+            <div id="cellphoneFrame">
 
-                        </div>
+                <div className="row tape-container">
+                    <div  className="row display_tape">
+                        <div className="display_tape_text">Selected Tasks: <span id="task_name_badge" className="badge">{(this.props.selectionState.length==0) ? "Nothing" :this.props.selectionState[0].taskTitle}</span></div>
+
                     </div>
-                    <div className="col-md-4">
-                        <div id="infoFrame">
 
+                    <div className="row display_tape">
+                        <div className="display_tape_text">Starting Time: <span id="starting_time_badge" className="badge">{(this.props.selectionState.length==0) ? "Nothing" : angleToTime(this.props.selectionState[0].startingAngle).time_12h}</span></div>
+                    </div>
 
-                        </div>
+                    <div className="row display_tape">
+                        <div className="display_tape_text">Duration: <span id="duration_badge" className="badge">{(this.props.selectionState.length==0) ? "Nothing" : angleToTime(this.props.selectionState[0].angleValue-90).time_24h}</span></div>
                     </div>
                 </div>
 
-                <div className="row main_body" >
-                    <footer ><pre id="log">sdsadsa</pre></footer>
+
+                <div className="row canvas_containing_container">
+                    <div id="canvas_container">
+                        <canvas id="canvas" onTouchCancel={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
+                        </canvas>
+                    </div>
+                </div>
+                <div className="row tape-container cell-footer">
+
+
+                    <div className="row display_tape">
+                        <div className="display_tape_text">Total Number of Task: <span className="badge">5</span></div>
+                    </div>
+
+
                 </div>
 
 
+        </div>
+        </div>
+        <div className="col-md-4">
+                <div id="infoFrame">
+
+                    <div  className="row display_tape">
+                        <div className="display_tape_text">Total Number of Task <span className="badge">4</span></div>
+                    </div>
 
 
 
+                    <div  className="row display_tape">
+                        <div className="display_tape_text">Selected Tasks <span className="badge">Task Name</span></div>
+
+                    </div>
+
+                    <div  className="row display_tape">
+                        <ul>
+                            <li >Task Name: Task_Name</li>
+                            <li><p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p></li>
+                        </ul>
+                    </div>
+
+                    <div className="row display_tape">
+                        <div className="display_tape_text">Starting Time: <span className="badge">4:30PM</span></div>
+                    </div>
+
+                    <div className="row display_tape">
+                        <div className="display_tape_text">Total Task: <span className="badge">9</span></div>
+                    </div>
+
+
+
+                </div>
+        </div>
             </div>
+
+            <div className="row main_body" >
+            <footer ><pre id="log">No Log Present</pre></footer>
+        </div>
+
+
+
+
+
+        </div>
         )
     }
 

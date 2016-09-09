@@ -18,6 +18,11 @@ function into360(angle){
 return angle
 }
 
+var config = {
+    multiSelect: true
+}
+
+
 export default function selectionReducer(selectionState=[],action){
     let new_selectionState = [...selectionState];
     let new_pieState
@@ -31,6 +36,33 @@ export default function selectionReducer(selectionState=[],action){
             });
 
         case'SELECTION_LOCAL_SELECT_PIE_OBJECT_BY_ANGLE':
+            new_pieState= getLocal("pieState")
+            let x = new_pieState.filter(function(v) {
+
+                var angleValue;
+                var startingAngle;
+                if(v.angleValue>=0){
+                    angleValue = v.angleValue
+                }else {
+                    angleValue = v.angleValue + 360
+                }
+                if(v.startingAngle>=0){
+                    startingAngle = v.startingAngle
+                }else{
+                    startingAngle = v.startingAngle +360
+                }
+
+                return startingAngle <= ((((startingAngle+angleValue)>360) && (startingAngle>action.angle))? parseInt(action.angle+360):action.angle) && ((startingAngle+angleValue) >= ((((startingAngle+angleValue)>360) && (startingAngle>action.angle))? parseInt(action.angle+360):action.angle));
+
+
+
+            })
+
+            return x.slice(0, 1);
+
+
+            break;
+        case'SELECTION_LOCAL_SELECT_MULTIPLE_PIE_OBJECT_BY_ANGLE':
             new_pieState= getLocal("pieState")
 
 

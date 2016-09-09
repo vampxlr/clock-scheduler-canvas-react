@@ -57,6 +57,13 @@ let actions = {
         }
 
     },
+    selection_local_selectMultiplePieObjectByAngle: function selection_local_selectMultiplePieObjectByAngle(angle){
+        return{
+            type:"SELECTION_LOCAL_SELECT_MULTIPLE_PIE_OBJECT_BY_ANGLE",
+            angle:angle
+        }
+
+    },
 
     selection_local_updateAllSelectedPies: function selection_local_updateAllSelectedPies(startingAngle=0,angleValue=30,color="black",className="pie",amOrPm ="AM"){
         return{

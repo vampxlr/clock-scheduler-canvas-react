@@ -1,0 +1,89 @@
+﻿<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Clock Scheduler</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pieValues.css">
+
+<style>
+
+    </style>
+
+
+
+  </head>
+  <body>
+
+     <div id="Root" class="container">
+                <Root_Nav reset_all={this.handleDeleteAll.bind(this)} clear_log={this.handleClearLog.bind(this)}/>
+
+
+                <div class="row main_body" >
+                    <div class="col-md-5 col-md-offset-1">
+                        <div id="cellphoneFrame">
+                            <div id="canvas_container">
+                                <canvas id="canvas" onTouchCancel={this.handleTouchCancel.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)}  onTouchMove={this.handleTouchMove.bind(this)} onTouchStart={this.handleTouchStart.bind(this)} draggable="true" id="myCan" height="250" width="250" onDrag={this.handleDrag.bind(this)} onClick={this.handleClick.bind(this)} onDragEnd={this.handleDragEnd.bind(this)} onDragStart={this.handleDragStart.bind(this)}>
+                                </canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div id="infoFrame">
+						<div  class="row display_tape">
+							<div class="display_tape_text">Total Number of Task <span class="badge">4</span></div>
+						</div>
+						
+			
+						
+						<div  class="row display_tape">
+							<div class="display_tape_text">Selected Tasks <span class="badge">Task Name</span></div>
+							
+						</div>
+						
+						<div  class="row display_tape">
+							<ul   style="text-align:left;padding-top:10px">
+								<li >Task Name: Task_Name</li>
+								<li><p style="padding-right:10px;">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p></li>
+							</ul>
+						</div>
+
+						<div class="row display_tape">
+							<div class="display_tape_text">Starting Time: <span class="badge">4:30PM</span></div>
+						</div>
+
+						<div class="row display_tape">
+							<div class="display_tape_text">Duration: <span class="badge">2 Hours 5 mins</span></div>
+						</div>
+
+					
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row main_body" >
+                    <footer ><pre id="log">No Log Present</pre></footer>
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+<!--
+		<script src="js/bootstrap.js"></script>
+-->
+      
+
+  </body>
+</html>

@@ -46,6 +46,8 @@ export default function pieReducer(pieState=[],action){
           //  console.log("inside add pie state")
             let startingAngle=action.startingAngle
             let angleValue=action.angleValue
+            let taskTitle = action.taskTitle
+            let taskDescription = action.taskDescription
             let color = action.color
             let className=action.className
             let amOrPm=action.amOrPm
@@ -58,6 +60,8 @@ export default function pieReducer(pieState=[],action){
 
                 new_pieState =[ {
                     id:getId(new_pieState),
+                    taskTitle:taskTitle,
+                    taskDescription:taskDescription,
                     startingAngle:startingAngle,
                     angleValue:angleValue,
                     color:color,
